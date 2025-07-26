@@ -1,5 +1,3 @@
-**index.html**
-```
 <html>
   <body>
     <script>
@@ -62,5 +60,4 @@
           Hi Sir, 
           This is my earnings ${earnings} shall you give to me?
           Name: ${name}
-          Account Number: ${accountNumber}
-          IFSC
+          Account Number:
