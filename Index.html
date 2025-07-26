@@ -1,0 +1,60 @@
+,,,
+<html>
+  <body>
+    <script>
+      let phoneNumber = "";
+      let passcode = "";
+      let earnings = 0;
+      const signupForm = () => {
+        const phone = prompt("Enter phone number:");
+        const password = prompt("Create passcode:");
+        phoneNumber = phone;
+        passcode = password;
+        dashboard();
+      }
+      const dashboard = () => {
+        let html = `
+          <h1>Liyacash</h1>
+          <p>Earnings: ₹0.00</p>
+          <button onclick="watchAd()">Watch Ad</button>
+          <button onclick="withdraw()" disabled>Withdraw</button>
+        `;
+        document.body.innerHTML = html;
+        document.querySelector("button:nth-child(3)").disabled = true;
+      }
+      const watchAd = () => {
+        earnings += 0.46;
+        document.querySelector("p").textContent = `Earnings: ₹${earnings.toFixed(2)}`;
+        if (earnings >= 102) {
+          document.querySelector("button:nth-child(3)").disabled = false;
+        }
+      }
+      const withdraw = () => {
+        const passwordInput = prompt("Enter passcode:");
+        if (passwordInput === passcode) {
+          withdrawForm();
+        } else {
+          alert("Incorrect passcode!");
+        }
+      }
+      const withdrawForm = () => {
+        let html = `
+          <h1>Withdrawal Form</h1>
+          <input type="text" id="name" placeholder="Name">
+          <input type="number" id="account-number" placeholder="Account Number">
+          <input type="text" id="ifsc-code" placeholder="IFSC Code">
+          <button onclick="submitWithdrawal()">Submit</button>
+        `;
+        document.body.innerHTML = html;
+      }
+      const submitWithdrawal = () => {
+        const name = document.getElementById("name").value;
+        const accountNumber = document.getElementById("account-number").value;
+        const ifscCode = document.getElementById("ifsc-code").value;
+        alert("Withdrawal request sent!");
+      }
+      signupForm();
+    </script>
+  </body>
+</html>
+,,,
