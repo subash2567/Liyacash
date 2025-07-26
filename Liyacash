@@ -1,0 +1,69 @@
+```javascript
+let phoneNumber = "";
+let passcode = "";
+let earnings = 0;
+// Signup Form
+const signupForm = () => {
+  const phone = prompt("Enter phone number:");
+  const password = prompt("Create passcode:");
+  phoneNumber = phone;
+  passcode = password;
+  dashboard();
+}
+// Dashboard
+const dashboard = () => {
+  let html = `
+    <h1>Liyacash</h1>
+    <p>Earnings: ₹0.00</p>
+    <button onclick="watchAd()">Watch Ad</button>
+    <button onclick="withdraw()" disabled>Withdraw</button>
+  `;
+  document.body.innerHTML = html;
+  document.querySelector("button:nth-child(3)").disabled = true;
+}
+// Watch Ad
+const watchAd = () => {
+  earnings += 0.46;
+  document.querySelector("p").textContent = `Earnings: ₹${earnings.toFixed(2)}`;
+  if (earnings >= 102) {
+    document.querySelector("button:nth-child(3)").disabled = false;
+  }
+}
+// Withdraw
+const withdraw = () => {
+  const passwordInput = prompt("Enter passcode:");
+  if (passwordInput === passcode) {
+    withdrawForm();
+  } else {
+    alert("Incorrect passcode!");
+  }
+}
+// Withdraw Form
+const withdrawForm = () => {
+  let html = `
+    <h1>Withdrawal Form</h1>
+    <input type="text" id="name" placeholder="Name">
+    <input type="number" id="account-number" placeholder="Account Number">
+    <input type="text" id="ifsc-code" placeholder="IFSC Code">
+    <button onclick="submitWithdrawal()">Submit</button>
+  `;
+  document.body.innerHTML = html;
+}
+// Submit Withdrawal
+const submitWithdrawal = () => {
+  const name = document.getElementById("name").value;
+  const accountNumber = document.getElementById("account-number").value;
+  const ifscCode = document.getElementById("ifsc-code").value;
+  const emailBody = `
+    Hi Sir, 
+    This is my earnings ${earnings} shall you give to me?
+    Name: ${name}
+    Account Number: ${accountNumber}
+    IFSC Code: ${ifscCode}
+  `;
+  alert("Withdrawal request sent!");
+  dashboard();
+}
+// Init Signup Form
+signupForm();
+```
